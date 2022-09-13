@@ -9,7 +9,7 @@ CHANNEL_LINK = "https://t.me/+tzhqbXbflJcyZDBl"
 
 SUPPORT_LINK = "https://t.me/+RjWwZdf9_U1mMGU1"
 
-info_text = "This bot is developed by @Awesome_Vaibhav_2007\n\nWritten in python library TELETHON.\n\nBot by : @DroneBots\nSupport : @TeamDrone\n\nV1.4"   
+info_text = "This bot is developed by @Awesome_Vaibhav_2007\n\nWritten in python library TELETHON.\n\nBot by Awesome Vaibhav"   
 
 help_text = """**v1.4**
 
