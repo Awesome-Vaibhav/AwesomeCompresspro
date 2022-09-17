@@ -51,12 +51,10 @@ async def compin(event):
                 await event.reply('📦',
                             buttons=[  
                                 [Button.inline("RENAME", data="rename")]])
-                @bot.on(events.NewMessage(pattern="/bash"))
-
-async def _(e):
-
-    await bash(e)
                 
+
+    
+ 
 @Drone.on(events.callbackquery.CallbackQuery(data="encode"))
 async def _encode(event):
     await event.edit("**🔀ENCODE**",
