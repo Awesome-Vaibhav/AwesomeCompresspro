@@ -97,7 +97,7 @@ async def _(event):
         if len(final_output)>4092:
             with open("Eval.txt", "w") as file:
                 file.write(final_output)
-            await event.client.send_file(event.chat_id, file='Eval.txt', reply_id = event.id)
+            await event.client.send_file(event.chat_id, file='Eval.txt', reply_to = event.id)
         else:
             await edit.edit(final_output, parse_mode='md')
 
@@ -111,11 +111,11 @@ async def _(event):
         result, error = await bash(cmd)
         final_output = f"<i>►</i> <b>Bash</b>\n<code>{cmd}</code>\n\n<i>►</i> <b>OUTPUT</b>: \n<code>{result}</code>"
         if not error in [None, ""]:
-            final_output = f"<i>►</i> <b>Bash</b>\n<code>{cmd}</code>\n\n<i>►</i> <b>Error</b>: \n<code>{error}</code>"
+            final_output = f"<i>►</i> <b>Bash</b>\n<code>{cmd}</code>\n\n<i>►</i> <b>OUTPUT</b>: \n<code>{result}</code>\n\n<b>Error</b>: \n<code>{error}</code>"
         if len(final_output)>4092:
             with open("Bash.txt", "w") as file:
                 file.write(final_output)
-            await event.client.send_file(event.chat_id, file='Bash.txt', reply_id = event.id)
+            await event.client.send_file(event.chat_id, file='Bash.txt', reply_to = event.id)
             await edit.delete()
         else:
             await edit.edit(final_output, parse_mode='html')
