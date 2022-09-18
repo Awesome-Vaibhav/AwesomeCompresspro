@@ -1,8 +1,12 @@
 import glob
 from pathlib import Path
-from main.utils import load_plugins
+
+import datetime
 import logging
+
+from main.utils import load_plugins
 from . import Drone
+
 
 logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s',
                     level=logging.WARNING)
@@ -14,6 +18,8 @@ for name in files:
         patt = Path(a.name)
         plugin_name = patt.stem
         load_plugins(plugin_name.replace(".py", ""))
+
+UPTIME = datetime.datetime.now()
 
 print("Successfully deployed!")
 
