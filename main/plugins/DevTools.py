@@ -16,7 +16,7 @@ except ModuleNotFoundError or ImportError:
 
 import time
 
-from .. import Drone
+from .. import Drone, UPTIME
 from LOCAL.localisation import DEV
 
 # HELPER FUNCTIONS
