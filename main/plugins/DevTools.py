@@ -14,6 +14,8 @@ try:
 except ModuleNotFoundError or ImportError:
     pass
 
+import time
+
 from .. import Drone
 from LOCAL.localisation import DEV
 
@@ -62,6 +64,21 @@ async def aexec(code, event):
         + "".join(f"\n {l}" for l in code.split("\n"))
     )
     return await locals()["__aexec"](event, event.client)
+
+def time_formatter(s):
+    minute, second = divmod(s, 60)
+    hour, minute = divmod(minute, 60)
+    day, hour = divmod(hour, 24)
+    final = ""
+    if day != 0:
+        final += str(day) + "d:"
+    if hour != 0:
+        final += str(hour) + "h:"
+    if minute != 0:
+        final += str(minute) + "m:"
+    final += str(second) + "s"
+    return final
+
 
 # MAIN FUNCTIONS (EXECUTION)
 
@@ -119,3 +136,13 @@ async def _(event):
             await edit.delete()
         else:
             await edit.edit(final_output, parse_mode='html')
+
+@Drone.on(events.MessageEdited(pattern='^(!|/)ping$'))
+@Drone.on(events.NewMessage(pattern='^(!|/)ping$'))
+async def ping_handler(event):
+    st_time = time.perf_counter_ns()
+    edit = await event.reply("**Pong!**", parse_mode='md')
+    ed_time = time.perf_counter_ns()
+    ping = str(float((ed_time - st_time)/1_000_000)) + "ms"
+    up_time = time_formatter((datetime.datetime.now() - UPTIME).total_seconds())
+    await edit.edit(f"**Ping!!** : `{ping}`\n**Uptime**: `{up_time}`", parse_mode='md')
